@@ -6,10 +6,13 @@
 DROP TABLE IF EXISTS calendar_test CASCADE;
 CREATE TABLE IF NOT EXISTS calendar_test
 (
- order_date date NOT NULL,
+ order_date date NOT NULL
 );
 
-INSERT INTO calendar (order_date)
+--clean table
+truncate table calendar_test;
+
+INSERT INTO calendar_test (order_date)
 VALUES (
 DATE(generate_series(DATE(NOW()) - INTERVAL '10 year', DATE(NOW()), INTERVAL '1 day'))
 );
