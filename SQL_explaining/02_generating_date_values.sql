@@ -2,7 +2,7 @@
 -- Но можно сгенерировать набор дат.
 -- Например, видел вот такое решение:
 
--- ************************************** calendar_dim
+-- ************************************** calendar_test
 DROP TABLE IF EXISTS calendar_test CASCADE;
 CREATE TABLE IF NOT EXISTS calendar_test
 (
