@@ -2,6 +2,8 @@
 -- Но можно сгенерировать набор дат.
 -- Например, видел вот такое решение. Тут берётся сегодняшний день и интервал в 10 лет назад
 
+--Разбор можно почитать тут https://habr.com/ru/articles/421969/
+
 -- ************************************** calendar_test
 DROP TABLE IF EXISTS calendar_test CASCADE;
 CREATE TABLE IF NOT EXISTS calendar_test
