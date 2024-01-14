@@ -67,3 +67,35 @@ to_char(date,'yyyymmdd')::int as date_id,
                        interval '1 day')
        as t(date);
 --checking
+
+
+
+-- https://habr.com/ru/articles/421969/
+/* Вводим что-то типа переменных, чтобы в едином месте можно было вводить входные данные, когда нет возможности использовать параметры */
+with dates as (
+   select '2018-01-31'::date as dt1, '2018-05-31'::date as dt2 
+),
+/* Вычисляем разницу между датами в "иерархических" единицах */
+g_age as (
+   select age( (select dt2 from dates), (select dt1 from dates))
+),
+/* Считаем сколько месяцев в полученной разнице (годы*12 + месяцы) и добавляем +1 месяц на возможную потерю при округлении  */
+months as (
+   select (extract(year from (select * from g_age))*12 + 
+     extract(month from (select * from g_age))+1)::integer
+),
+/* Количество посчитано, генерируем последовательность и добавляем проверку на выход из первоначального диапазона из-за возможного лишнего месяца, который мы добавили как корректировку округления */
+
+seq as(
+ select ((select dt1 from dates) + make_interval(0, gs)) as gs
+ from  generate_series (
+     0,
+     (select * from months),
+     1
+ ) as gs 
+ where ((select dt1 from dates) + make_interval(0, gs)) <= (select dt2 from dates)
+)
+/* Ну и собственно смотрим что у нас получилось */
+select * from seq
+;
+
