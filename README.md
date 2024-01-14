@@ -15,4 +15,7 @@ https://github.com/domingocolombo/SQL_learning/blob/main/SQL_explaining/01_max_b
 Для таблицы измерений с датами можно взять значения из таблицы фактов. 
 Но можно сгенерировать набор дат.
 Например, видел вот такое решение. Тут берётся сегодняшний день и интервал в 10 лет назад
+
+Разбор можно почитать тут https://habr.com/ru/articles/421969/
+
 https://github.com/domingocolombo/SQL_learning/blob/main/SQL_explaining/02_generating_date_values.sql
